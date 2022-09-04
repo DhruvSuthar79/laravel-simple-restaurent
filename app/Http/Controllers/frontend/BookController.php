@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
+use App\Models\TableBooking;
 
 class BookController extends Controller
 {
@@ -15,9 +16,9 @@ class BookController extends Controller
     
     public function booking( Request $request )
     {
-        echo "<pre>";
-        print_r( $request->all() );
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r( $request->all() );
+        // echo "</pre>";
 
         $request->validate([
             'your-name' => 'required',
@@ -30,12 +31,15 @@ class BookController extends Controller
         $phone = $request[ 'your-phone' ];
         $email = $request[ 'your-email' ];
         $how_many = $request[ 'how-many' ];
-        $date = $request[ 'book-date' ];
+        $booking_date = $request[ 'book-date' ];
 
-    }
+        $book = new TableBooking;
 
-    public function store()
-    {
-
+        $book->name = $name;
+        $book->phone = $phone;
+        $book->email = $email;
+        $book->person_count = $how_many;
+        $book->booking_date = $booking_date;
+        $book->save();
     }
 }
