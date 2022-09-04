@@ -68,7 +68,3 @@ $(".client_owl-carousel").owlCarousel({
         }
     }
 });
-
-$( document ). ready( function(){
-    alert('test');
-} )
